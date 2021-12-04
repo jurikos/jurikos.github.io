@@ -1,8 +1,9 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Row, Col, Button, Card } from 'react-bootstrap';
-import PageHeading from '../components/shared/PageHeading';
 import config from '../config';
+import PageMeta from '../components/shared/PageMeta';
+import PageHeading from '../components/shared/PageHeading';
 
 const Home: FC = () => {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ const Home: FC = () => {
 
   return (
     <>
+      <PageMeta title="Home" />
       <Row className="my-5">
         <Col lg={6} className="mx-auto text-center">
           <PageHeading title="React Frontend Developer" />

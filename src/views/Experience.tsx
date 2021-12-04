@@ -1,15 +1,18 @@
 import { FC } from 'react';
 import { Accordion, Badge, Button } from 'react-bootstrap';
-import PageHeading from '../components/shared/PageHeading';
-import config from '../config';
 import { removeProtocolFromUrl } from '../utils';
+import config from '../config';
+import PageMeta from '../components/shared/PageMeta';
+import PageHeading from '../components/shared/PageHeading';
 
 const Experience: FC = () => {
   const { experience } = config;
+  const title = 'Experience';
 
   return (
     <>
-      <PageHeading title="Experience" />
+      <PageMeta title={title} />
+      <PageHeading title={title} />
       <Accordion defaultActiveKey="0">
         {experience.map(({ company, website, role, date, description, projects }, i) => (
           <Accordion.Item eventKey={`${i}`} key={date}>

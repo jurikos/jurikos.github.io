@@ -1,15 +1,18 @@
 import { FC } from 'react';
 import { Row, Col, Button, Card, Badge } from 'react-bootstrap';
-import PageHeading from '../components/shared/PageHeading';
-import config from '../config';
 import { removeProtocolFromUrl } from '../utils';
+import config from '../config';
+import PageMeta from '../components/shared/PageMeta';
+import PageHeading from '../components/shared/PageHeading';
 
 const Projects: FC = () => {
   const { projects } = config;
+  const title = 'Projects';
 
   return (
     <>
-      <PageHeading title="Projects" />
+      <PageMeta title={title} />
+      <PageHeading title={title} />
       <Row>
         {projects.map(({ title, description, url, stack }) => (
           <Col key={title} md={6} lg={4} className="mb-4">

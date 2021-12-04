@@ -2,12 +2,14 @@ import { FC, useState } from 'react';
 import { Alert, Spinner, Form, Table } from 'react-bootstrap';
 import { useCovidList } from '../../hooks/covid19';
 import { arrSortAscByKey, arrSortDescByKey, arrSortStringAscByKey, arrSortStringDescByKey } from '../../utils';
+import PageMeta from '../shared/PageMeta';
 import PageHeading from '../shared/PageHeading';
 import TableHeadingSort from '../shared/TableHeadingSort';
 
 const CovidList: FC = () => {
   const [covidList, setCovidList, error] = useCovidList();
   const [search, setSearch] = useState('');
+  const title = 'Covid19';
 
   if (error)
     return (
@@ -28,7 +30,8 @@ const CovidList: FC = () => {
 
   return (
     <>
-      <PageHeading title="Covid19" />
+      <PageMeta title={title} />
+      <PageHeading title={title} />
       <Form.Control
         size="lg"
         type="search"

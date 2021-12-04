@@ -4,6 +4,7 @@ import Chart from 'react-apexcharts';
 import { useCryptoList, useCryptoHistory } from '../../hooks/crypto';
 import { formatPrice } from '../../utils';
 import config from '../../config';
+import PageMeta from '../shared/PageMeta';
 import PageHeading from '../shared/PageHeading';
 import Percent from '../shared/Percent';
 
@@ -44,6 +45,7 @@ const CryptoDetail: FC<CryptoDetailProps> = ({ code }) => {
 
   return (
     <>
+      <PageMeta title={name} />
       <PageHeading title={name} />
       <div className="mb-5">
         <div className="d-flex align-items-center fs-2">

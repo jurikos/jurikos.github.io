@@ -9,6 +9,7 @@ import {
   arrSortStringDescByKey,
   formatPrice,
 } from '../../utils';
+import PageMeta from '../shared/PageMeta';
 import PageHeading from '../shared/PageHeading';
 import TableHeadingSort from '../shared/TableHeadingSort';
 import Percent from '../shared/Percent';
@@ -16,6 +17,7 @@ import Percent from '../shared/Percent';
 const CryptoList: FC = () => {
   const [cryptoList, setCryptoList, error] = useCryptoList();
   const [search, setSearch] = useState('');
+  const title = 'Crypto';
 
   if (error)
     return (
@@ -36,7 +38,8 @@ const CryptoList: FC = () => {
 
   return (
     <>
-      <PageHeading title="Crypto" />
+      <PageMeta title={title} />
+      <PageHeading title={title} />
       <Form.Control
         size="lg"
         type="search"

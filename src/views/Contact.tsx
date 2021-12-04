@@ -1,5 +1,6 @@
 import { FC, useState, Suspense, lazy } from 'react';
 import { Button, Spinner, Row, Col, Card } from 'react-bootstrap';
+import PageMeta from '../components/shared/PageMeta';
 import PageHeading from '../components/shared/PageHeading';
 import Socials from '../components/shared/Socials';
 const ContactDetails = lazy(() => import('../components/ContactDetails'));
@@ -13,10 +14,12 @@ const Contact: FC = () => {
       Show contact information
     </Button>
   );
+  const title = 'Contact';
 
   return (
     <>
-      <PageHeading title="Contact" />
+      <PageMeta title={title} />
+      <PageHeading title={title} />
       <Row>
         <Col md={6}>
           <Card>
