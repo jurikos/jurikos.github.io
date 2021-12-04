@@ -7,6 +7,8 @@ export const removeProtocolFromUrl = (url: string) => url.replace(/(^\w+:|^)\/\/
 export const formatPrice = (price: number, locale = 'en', currency = 'USD'): string =>
   new Intl.NumberFormat(locale, { style: 'currency', currency, maximumFractionDigits: 4 }).format(price);
 
+export const formatNumber = (number: number, locale = 'en'): string => new Intl.NumberFormat(locale).format(number);
+
 export const arrSortAscByKey = (arr: any[], key: string) => arr.sort((a, b) => _get(b, key) - _get(a, key));
 
 export const arrSortDescByKey = (arr: any[], key: string) => arr.sort((a, b) => _get(a, key) - _get(b, key));

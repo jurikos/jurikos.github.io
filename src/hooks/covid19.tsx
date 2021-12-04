@@ -28,3 +28,21 @@ export const useCovidList = (): [
 
   return [covidList, setCovidList, error];
 };
+
+export const useCovidDetail = (country: string): [CountryModel | undefined, Error] => {
+  const {
+    features: {
+      covid19: { endpoint },
+    },
+  } = config;
+  const [covidDetail, setCovidDetail] = useState<CountryModel | undefined>();
+  const { data, error } = useSWR<CountryModel>(`${endpoint}/covid-19/countries/${country}`, fetcher, {
+    revalidateOnFocus: false,
+  });
+
+  useEffect(() => {
+    if (data) setCovidDetail(data);
+  }, [data]);
+
+  return [covidDetail, error];
+};
