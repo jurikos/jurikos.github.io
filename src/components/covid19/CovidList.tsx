@@ -1,8 +1,16 @@
 import { FC, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Alert, Spinner, Form, Table } from 'react-bootstrap';
 import { useCovidList } from '../../hooks/covid19';
-import { arrSortAscByKey, arrSortDescByKey, arrSortStringAscByKey, arrSortStringDescByKey } from '../../utils';
+import {
+  arrSortAscByKey,
+  arrSortDescByKey,
+  arrSortStringAscByKey,
+  arrSortStringDescByKey,
+  formatNumber,
+} from '../../utils';
 import PageMeta from '../shared/PageMeta';
+import Breadcrumbs from '../shared/Breadcrumbs';
 import PageHeading from '../shared/PageHeading';
 import TableHeadingSort from '../shared/TableHeadingSort';
 
@@ -31,6 +39,7 @@ const CovidList: FC = () => {
   return (
     <>
       <PageMeta title={title} />
+      <Breadcrumbs className="my-3" crumbs={[{ title: 'Covid19' }]} />
       <PageHeading title={title} />
       <Form.Control
         size="lg"
@@ -66,12 +75,19 @@ const CovidList: FC = () => {
             .map(({ country, todayCases, cases, todayDeaths, deaths, countryInfo: { flag } }) => (
               <tr key={country}>
                 <td>
-                  <img loading="lazy" style={{ width: '1rem' }} alt={country} src={flag} /> {country}
+                  <img loading="lazy" style={{ width: '1rem' }} alt={country} src={flag} />{' '}
+                  <Link to={country.toLowerCase()}>{country}</Link>
                 </td>
-                <td>{todayCases > 0 ? <strong>{todayCases}</strong> : todayCases}</td>
-                <td>{cases}</td>
-                <td>{todayDeaths > 0 ? <strong className="text-danger">{todayDeaths}</strong> : todayDeaths}</td>
-                <td>{deaths > 0 ? <strong>{deaths}</strong> : deaths}</td>
+                <td>{todayCases > 0 ? <strong>{formatNumber(todayCases)}</strong> : formatNumber(todayCases)}</td>
+                <td>{formatNumber(cases)}</td>
+                <td>
+                  {todayDeaths > 0 ? (
+                    <strong className="text-danger">{formatNumber(todayDeaths)}</strong>
+                  ) : (
+                    formatNumber(todayDeaths)
+                  )}
+                </td>
+                <td>{deaths > 0 ? <strong>{formatNumber(deaths)}</strong> : formatNumber(deaths)}</td>
               </tr>
             ))}
         </tbody>

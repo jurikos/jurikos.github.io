@@ -19,6 +19,7 @@ const App: FC = () => {
           <Route path="/experience" element={<Experience />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/features/covid-19" element={<Covid19 />} />
+          <Route path="/features/covid-19/:country" element={<Covid19 />} />
           <Route path="/features/crypto" element={<Crypto />} />
           <Route path="/features/crypto/:code" element={<Crypto />} />
           <Route path="/contact" element={<Contact />} />
