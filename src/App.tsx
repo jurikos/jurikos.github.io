@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FC } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
+import Header from './components/Header';
+import Home from './views/Home';
+import Experience from './views/Experience';
+import Projects from './views/Projects';
+import Covid19 from './views/Covid19';
+import Crypto from './views/Crypto';
+import Contact from './views/Contact';
 
-function App() {
+const App: FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header />
+      <Container className="pb-5">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/experience" element={<Experience />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/features/covid-19" element={<Covid19 />} />
+          <Route path="/features/crypto" element={<Crypto />} />
+          <Route path="/features/crypto/:code" element={<Crypto />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </Container>
+    </Router>
   );
-}
+};
 
 export default App;
