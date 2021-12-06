@@ -1,0 +1,71 @@
+import { CountryModel } from '../models/covid19';
+
+export const mockEstoniaCovidData: CountryModel = {
+  updated: 1638783329670,
+  country: 'Estonia',
+  countryInfo: {
+    _id: 233,
+    iso2: 'EE',
+    iso3: 'EST',
+    lat: 59,
+    long: 26,
+    flag: 'https://disease.sh/assets/img/flags/ee.png',
+  },
+  cases: 225294,
+  todayCases: 301,
+  deaths: 1825,
+  todayDeaths: 2,
+  recovered: 208614,
+  todayRecovered: 764,
+  active: 14855,
+  critical: 26,
+  casesPerOneMillion: 169674,
+  deathsPerOneMillion: 1374,
+  tests: 2365435,
+  testsPerOneMillion: 1781459,
+  population: 1327808,
+  continent: 'Europe',
+  oneCasePerPeople: 6,
+  oneDeathPerPeople: 728,
+  oneTestPerPeople: 1,
+  activePerOneMillion: 11187.61,
+  recoveredPerOneMillion: 157111.57,
+  criticalPerOneMillion: 19.58,
+};
+
+export const mockUsaCovidData: CountryModel = {
+  updated: 1638783329286,
+  country: 'USA',
+  countryInfo: {
+    _id: 840,
+    iso2: 'US',
+    iso3: 'USA',
+    lat: 38,
+    long: -97,
+    flag: 'https://disease.sh/assets/img/flags/us.png',
+  },
+  cases: 49969856,
+  todayCases: 0,
+  deaths: 808763,
+  todayDeaths: 0,
+  recovered: 39523573,
+  todayRecovered: 0,
+  active: 9637520,
+  critical: 13781,
+  casesPerOneMillion: 149713,
+  deathsPerOneMillion: 2423,
+  tests: 760636842,
+  testsPerOneMillion: 2278920,
+  population: 333770690,
+  continent: 'North America',
+  oneCasePerPeople: 7,
+  oneDeathPerPeople: 413,
+  oneTestPerPeople: 0,
+  activePerOneMillion: 28874.67,
+  recoveredPerOneMillion: 118415.35,
+  criticalPerOneMillion: 41.29,
+};
+
+export const mockCountriesCovidData: CountryModel[] = [mockEstoniaCovidData, mockUsaCovidData];
+
+export const mockCountriesCovidDataReverse: CountryModel[] = [mockUsaCovidData, mockEstoniaCovidData];
