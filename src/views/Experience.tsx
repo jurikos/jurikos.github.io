@@ -3,6 +3,7 @@ import { Accordion, Badge, Button } from 'react-bootstrap';
 import { removeProtocolFromUrl } from '../utils';
 import config from '../config';
 import PageMeta from '../components/shared/PageMeta';
+import Breadcrumbs from '../components/shared/Breadcrumbs';
 import PageHeading from '../components/shared/PageHeading';
 
 const Experience: FC = () => {
@@ -12,6 +13,7 @@ const Experience: FC = () => {
   return (
     <>
       <PageMeta title={title} />
+      <Breadcrumbs className="my-3" crumbs={[{ title }]} />
       <PageHeading title={title} />
       <Accordion defaultActiveKey="0">
         {experience.map(({ company, website, role, date, description, projects }, i) => (

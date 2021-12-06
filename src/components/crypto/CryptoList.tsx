@@ -46,7 +46,7 @@ const CryptoList: FC = () => {
   return (
     <>
       <PageMeta title={title} />
-      <Breadcrumbs className="my-3" crumbs={[{ title: 'Crypto' }]} />
+      <Breadcrumbs className="my-3" crumbs={[{ title }]} />
       <PageHeading title={title} />
       <Form.Control
         size="lg"

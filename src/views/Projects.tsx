@@ -3,6 +3,7 @@ import { Row, Col, Button, Card, Badge } from 'react-bootstrap';
 import { removeProtocolFromUrl } from '../utils';
 import config from '../config';
 import PageMeta from '../components/shared/PageMeta';
+import Breadcrumbs from '../components/shared/Breadcrumbs';
 import PageHeading from '../components/shared/PageHeading';
 
 const Projects: FC = () => {
@@ -12,6 +13,7 @@ const Projects: FC = () => {
   return (
     <>
       <PageMeta title={title} />
+      <Breadcrumbs className="my-3" crumbs={[{ title }]} />
       <PageHeading title={title} />
       <Row>
         {projects.map(({ title, description, url, stack }) => (

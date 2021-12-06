@@ -1,6 +1,7 @@
 import { FC, useState, Suspense, lazy } from 'react';
 import { Button, Spinner, Row, Col, Card } from 'react-bootstrap';
 import PageMeta from '../components/shared/PageMeta';
+import Breadcrumbs from '../components/shared/Breadcrumbs';
 import PageHeading from '../components/shared/PageHeading';
 import Socials from '../components/shared/Socials';
 const ContactDetails = lazy(() => import('../components/ContactDetails'));
@@ -19,6 +20,7 @@ const Contact: FC = () => {
   return (
     <>
       <PageMeta title={title} />
+      <Breadcrumbs className="my-3" crumbs={[{ title }]} />
       <PageHeading title={title} />
       <Row>
         <Col md={6}>

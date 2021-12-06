@@ -39,7 +39,7 @@ const CovidList: FC = () => {
   return (
     <>
       <PageMeta title={title} />
-      <Breadcrumbs className="my-3" crumbs={[{ title: 'Covid19' }]} />
+      <Breadcrumbs className="my-3" crumbs={[{ title }]} />
       <PageHeading title={title} />
       <Form.Control
         size="lg"
