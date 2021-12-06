@@ -20,7 +20,7 @@ const Contact: FC = () => {
   return (
     <>
       <PageMeta title={title} />
-      <Breadcrumbs className="my-3" crumbs={[{ title }]} />
+      <Breadcrumbs crumbs={[{ title }]} />
       <PageHeading title={title} />
       <Row>
         <Col md={6}>

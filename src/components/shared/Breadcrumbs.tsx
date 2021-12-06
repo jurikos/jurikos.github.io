@@ -7,7 +7,7 @@ interface BreadcrumbsProps {
   className?: string;
 }
 
-const Breadcrumbs: FC<BreadcrumbsProps> = ({ crumbs, className }) => (
+const Breadcrumbs: FC<BreadcrumbsProps> = ({ crumbs, className = 'my-3' }) => (
   <Breadcrumb className={className}>
     <LinkContainer to="/">
       <Breadcrumb.Item>Home</Breadcrumb.Item>

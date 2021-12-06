@@ -13,7 +13,7 @@ const Projects: FC = () => {
   return (
     <>
       <PageMeta title={title} />
-      <Breadcrumbs className="my-3" crumbs={[{ title }]} />
+      <Breadcrumbs crumbs={[{ title }]} />
       <PageHeading title={title} />
       <Row>
         {projects.map(({ title, description, url, stack }) => (

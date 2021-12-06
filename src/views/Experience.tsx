@@ -13,7 +13,7 @@ const Experience: FC = () => {
   return (
     <>
       <PageMeta title={title} />
-      <Breadcrumbs className="my-3" crumbs={[{ title }]} />
+      <Breadcrumbs crumbs={[{ title }]} />
       <PageHeading title={title} />
       <Accordion defaultActiveKey="0">
         {experience.map(({ company, website, role, date, description, projects }, i) => (

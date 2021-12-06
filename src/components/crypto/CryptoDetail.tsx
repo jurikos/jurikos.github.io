@@ -39,7 +39,7 @@ const CryptoDetail: FC<CryptoDetailProps> = ({ code }) => {
   return (
     <>
       <PageMeta title={name} />
-      <Breadcrumbs className="my-3" crumbs={[{ title: 'Crypto', url: '/features/crypto' }, { title: name }]} />
+      <Breadcrumbs crumbs={[{ title: 'Crypto', url: '/features/crypto' }, { title: name }]} />
       <PageHeading title={name} />
       <div className="mb-5">
         <div className="d-flex align-items-center fs-2">
