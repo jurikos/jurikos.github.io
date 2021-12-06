@@ -1,6 +1,9 @@
 import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import { Alert, Spinner, Form, Table } from 'react-bootstrap';
+import { Heart, HeartFill } from 'react-bootstrap-icons';
+import favoriteCryptoAtom from '../../state/atoms/favoriteCryptoAtom';
 import { useCryptoList } from '../../hooks/crypto';
 import {
   arrSortAscByKey,
@@ -10,6 +13,7 @@ import {
   formatPrice,
 } from '../../utils';
 import PageMeta from '../shared/PageMeta';
+import Breadcrumbs from '../shared/Breadcrumbs';
 import PageHeading from '../shared/PageHeading';
 import TableHeadingSort from '../shared/TableHeadingSort';
 import Percent from '../shared/Percent';
@@ -17,7 +21,10 @@ import Percent from '../shared/Percent';
 const CryptoList: FC = () => {
   const [cryptoList, setCryptoList, error] = useCryptoList();
   const [search, setSearch] = useState('');
+  const [favoriteCrypto, setFavoriteCrypto] = useRecoilState(favoriteCryptoAtom);
   const title = 'Crypto';
+  const iconColor = 'var(--bs-red)';
+  const iconSize = 16;
 
   if (error)
     return (
@@ -39,6 +46,7 @@ const CryptoList: FC = () => {
   return (
     <>
       <PageMeta title={title} />
+      <Breadcrumbs className="my-3" crumbs={[{ title: 'Crypto' }]} />
       <PageHeading title={title} />
       <Form.Control
         size="lg"
@@ -66,6 +74,7 @@ const CryptoList: FC = () => {
                 }
               />
             ))}
+            <th />
           </tr>
         </thead>
         <tbody>
@@ -74,6 +83,7 @@ const CryptoList: FC = () => {
             .map(({ CoinInfo: { Name: code, ImageUrl: image, FullName: name }, RAW }) => {
               if (!RAW?.USD) return null;
               const { MKTCAP: marketCap, PRICE: price, CHANGEPCT24HOUR: changePct24h } = RAW.USD;
+              const isFavorite = favoriteCrypto && favoriteCrypto.code === code;
 
               return (
                 <tr key={code}>
@@ -82,7 +92,7 @@ const CryptoList: FC = () => {
                       loading="lazy"
                       alt={name}
                       src={`https://www.cryptocompare.com/${image}`}
-                      style={{ width: '1.3rem' }}
+                      style={{ width: '1rem' }}
                       className="me-2"
                     />
                     {code}
@@ -95,6 +105,19 @@ const CryptoList: FC = () => {
                     <Percent amount={changePct24h} />
                   </td>
                   <td>{marketCap ? formatPrice(marketCap) : '-'}</td>
+                  <td className="text-center">
+                    <span
+                      title={!isFavorite ? 'Add to Favorites' : 'Remove from Favorites'}
+                      role="button"
+                      onClick={() => setFavoriteCrypto(!isFavorite ? { code, image } : null)}
+                    >
+                      {isFavorite ? (
+                        <HeartFill color={iconColor} size={iconSize} />
+                      ) : (
+                        <Heart color={iconColor} size={iconSize} />
+                      )}
+                    </span>
+                  </td>
                 </tr>
               );
             })}

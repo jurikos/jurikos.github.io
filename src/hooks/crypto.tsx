@@ -88,3 +88,27 @@ export const useCryptoHistory = (
 
   return [cryptoHistory, chartSeries, timeframe, setTimeframe, error || responseError];
 };
+
+interface CryptoDetail {
+  code: string;
+  name: string;
+  image: string;
+  price: number;
+  changePct24h: number;
+}
+
+export const useCryptoDetailData = (code: string): CryptoDetail | null => {
+  const [cryptoList, , cryptoListError] = useCryptoList();
+  const cryptoDetailData = cryptoList?.find((item) => item.CoinInfo.Name === code);
+
+  if (!cryptoList || cryptoListError || !cryptoDetailData) return null;
+
+  const {
+    CoinInfo: { FullName: name, ImageUrl: image },
+    RAW: {
+      USD: { PRICE: price, CHANGEPCT24HOUR: changePct24h },
+    },
+  } = cryptoDetailData;
+
+  return { code, name, image, price, changePct24h };
+};

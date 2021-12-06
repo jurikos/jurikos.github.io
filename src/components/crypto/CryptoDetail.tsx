@@ -1,10 +1,11 @@
 import { FC } from 'react';
 import { Alert, Spinner, ButtonGroup, Button } from 'react-bootstrap';
 import Chart from 'react-apexcharts';
-import { useCryptoList, useCryptoHistory } from '../../hooks/crypto';
+import { useCryptoDetailData, useCryptoHistory } from '../../hooks/crypto';
 import { formatPrice } from '../../utils';
 import config from '../../config';
 import PageMeta from '../shared/PageMeta';
+import Breadcrumbs from '../shared/Breadcrumbs';
 import PageHeading from '../shared/PageHeading';
 import Percent from '../shared/Percent';
 
@@ -20,12 +21,11 @@ const CryptoDetail: FC<CryptoDetailProps> = ({ code }) => {
     },
   } = config;
 
-  const [cryptoList, , cryptoListError] = useCryptoList();
+  const cryptoDetailData = useCryptoDetailData(cryptoCode);
   const [cryptoHistory, chartSeries, timeframe, setTimeframe, cryptoHistoryError] = useCryptoHistory(cryptoCode);
-  const error = cryptoListError || cryptoHistoryError;
-  const loading = !cryptoList || !cryptoHistory || !chartSeries;
+  const loading = !cryptoDetailData || !cryptoHistory || !chartSeries;
 
-  if (error)
+  if (cryptoHistoryError)
     return (
       <Alert variant="danger" className="my-5">
         Something went wrong
@@ -34,18 +34,12 @@ const CryptoDetail: FC<CryptoDetailProps> = ({ code }) => {
 
   if (loading) return <Spinner animation="border" className="my-5" />;
 
-  const cryptoDetailData = cryptoList.find((item) => item.CoinInfo.Name === cryptoCode);
-
-  if (!cryptoDetailData) return <Alert variant="warning">Not found</Alert>;
-
-  const {
-    CoinInfo: { FullName: name, ImageUrl: image },
-  } = cryptoDetailData;
-  const { PRICE: price, CHANGEPCT24HOUR: changePct24h } = cryptoDetailData.RAW.USD;
+  const { name, image, price, changePct24h } = cryptoDetailData;
 
   return (
     <>
       <PageMeta title={name} />
+      <Breadcrumbs className="my-3" crumbs={[{ title: 'Crypto', url: '/features/crypto' }, { title: name }]} />
       <PageHeading title={name} />
       <div className="mb-5">
         <div className="d-flex align-items-center fs-2">
