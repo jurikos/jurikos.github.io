@@ -92,7 +92,7 @@ const CryptoList: FC = () => {
                       loading="lazy"
                       alt={name}
                       src={`https://www.cryptocompare.com/${image}`}
-                      style={{ width: '1rem' }}
+                      style={{ width: '1.3rem' }}
                       className="me-2"
                     />
                     {code}
