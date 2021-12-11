@@ -13,6 +13,7 @@ const nav = [
     children: [
       { title: 'Covid 19', url: '/features/covid-19' },
       { title: 'Crypto', url: '/features/crypto' },
+      { title: 'Movies', url: '/features/movies' },
     ],
   },
   {

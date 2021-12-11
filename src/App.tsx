@@ -9,6 +9,7 @@ import Experience from './views/Experience';
 import Projects from './views/Projects';
 import Covid19 from './views/Covid19';
 import Crypto from './views/Crypto';
+import Movies from './views/Movies';
 import Contact from './views/Contact';
 
 const App: FC = () => {
@@ -28,6 +29,8 @@ const App: FC = () => {
             <Route path="/features/covid-19/:country" element={<Covid19 />} />
             <Route path="/features/crypto" element={<Crypto />} />
             <Route path="/features/crypto/:code" element={<Crypto />} />
+            <Route path="/features/movies" element={<Movies />} />
+            <Route path="/features/movies/:type/:id" element={<Movies />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </Container>
