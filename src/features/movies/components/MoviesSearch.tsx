@@ -1,16 +1,17 @@
 import { FC } from 'react';
 import { Form } from 'react-bootstrap';
 import { useRecoilState } from 'recoil';
-import moviesAtom from '../../state/atoms/moviesAtom';
-import PageMeta from '../shared/PageMeta';
-import Breadcrumbs from '../shared/Breadcrumbs';
+import { MoviesTitle } from '../enums';
+import moviesAtom from '../state/moviesAtom';
+import PageMeta from '../../../components/shared/PageMeta';
+import Breadcrumbs from '../../../components/shared/Breadcrumbs';
 import MoviesHeading from './MoviesHeading';
 import MoviesList from './MoviesList';
 
 const MoviesSearch: FC = () => {
   const [movies, setMovies] = useRecoilState(moviesAtom);
   const moviesSearch = movies?.search;
-  const title = 'Movies';
+  const title = MoviesTitle.Base;
 
   return (
     <>

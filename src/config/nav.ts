@@ -1,3 +1,6 @@
+import MoviesRouteDictionary from '../features/movies/routes';
+import { MoviesTitle } from '../features/movies/enums';
+
 const nav = [
   {
     title: 'Experience',
@@ -13,7 +16,7 @@ const nav = [
     children: [
       { title: 'Covid 19', url: '/features/covid-19' },
       { title: 'Crypto', url: '/features/crypto' },
-      { title: 'Movies', url: '/features/movies' },
+      { title: MoviesTitle.Base, url: MoviesRouteDictionary.Index },
     ],
   },
   {

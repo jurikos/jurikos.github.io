@@ -24,6 +24,3 @@ export const arrSortStringAscByKey = (arr: any[], key: string) =>
 
 export const arrSortStringDescByKey = (arr: any[], key: string) =>
   arr.sort((a, b) => _get(b, key).localeCompare(_get(a, key)));
-
-export const getMovieImg = (posterPath: string | null) =>
-  posterPath ? `https://image.tmdb.org/t/p/w500${posterPath}` : 'https://via.placeholder.com/500x750?text=NO+PREVIEW';

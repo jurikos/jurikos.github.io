@@ -1,7 +1,9 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Alert, Spinner, Tabs, Tab, Row, Col } from 'react-bootstrap';
-import { useMoviesList, useShowsList } from '../../hooks/movies';
+import MoviesRouteDictionary from '../routes';
+import { MoviesType } from '../enums';
+import { useMoviesList, useTvList } from '../hooks';
 import MoviesCard from './MoviesCard';
 
 interface MoviesListProps {
@@ -11,7 +13,9 @@ interface MoviesListProps {
 const MoviesList: FC<MoviesListProps> = ({ query }) => {
   const navigate = useNavigate();
   const [moviesList, moviesListError] = useMoviesList(query);
-  const [showsList, showsListError] = useShowsList(query);
+  const [showsList, showsListError] = useTvList(query);
+  const movieRoute = `${MoviesRouteDictionary.Index}/${MoviesType.Movie}`;
+  const tvRoute = `${MoviesRouteDictionary.Index}/${MoviesType.Tv}`;
 
   if (moviesListError | showsListError)
     return (
@@ -27,14 +31,7 @@ const MoviesList: FC<MoviesListProps> = ({ query }) => {
       <Tab eventKey="movies" title={`Movies (${moviesList.length})`}>
         <Row>
           {moviesList.map(({ id, poster_path, original_title, release_date }) => (
-            <Col
-              key={id}
-              md={6}
-              lg={3}
-              className="mt-4"
-              onClick={() => navigate(`/features/movies/movie/${id}`)}
-              role="button"
-            >
+            <Col key={id} md={6} lg={3} className="mt-4" onClick={() => navigate(`${movieRoute}/${id}`)} role="button">
               <MoviesCard image={poster_path} date={release_date} title={original_title} />
             </Col>
           ))}
@@ -43,14 +40,7 @@ const MoviesList: FC<MoviesListProps> = ({ query }) => {
       <Tab eventKey="Tvs" title={`TV Shows (${showsList.length})`}>
         <Row>
           {showsList.map(({ id, poster_path, original_name, name, first_air_date }) => (
-            <Col
-              key={id}
-              md={6}
-              lg={3}
-              className="mt-4"
-              onClick={() => navigate(`/features/movies/tv/${id}`)}
-              role="button"
-            >
+            <Col key={id} md={6} lg={3} className="mt-4" onClick={() => navigate(`${tvRoute}/${id}`)} role="button">
               <MoviesCard
                 image={poster_path}
                 date={first_air_date}

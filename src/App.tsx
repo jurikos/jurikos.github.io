@@ -9,8 +9,10 @@ import Experience from './views/Experience';
 import Projects from './views/Projects';
 import Covid19 from './views/Covid19';
 import Crypto from './views/Crypto';
-import Movies from './views/Movies';
 import Contact from './views/Contact';
+
+import MoviesRouteDictionary from './features/movies/routes';
+import Movies from './features/movies/views/Movies';
 
 const App: FC = () => {
   return (
@@ -25,13 +27,15 @@ const App: FC = () => {
             <Route path="/" element={<Home />} />
             <Route path="/experience" element={<Experience />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/contact" element={<Contact />} />
+
             <Route path="/features/covid-19" element={<Covid19 />} />
             <Route path="/features/covid-19/:country" element={<Covid19 />} />
             <Route path="/features/crypto" element={<Crypto />} />
             <Route path="/features/crypto/:code" element={<Crypto />} />
-            <Route path="/features/movies" element={<Movies />} />
-            <Route path="/features/movies/:type/:id" element={<Movies />} />
-            <Route path="/contact" element={<Contact />} />
+
+            <Route path={MoviesRouteDictionary.Index} element={<Movies />} />
+            <Route path={MoviesRouteDictionary.Detail} element={<Movies />} />
           </Routes>
         </Container>
       </Router>

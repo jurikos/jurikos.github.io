@@ -1,19 +1,22 @@
 import { FC, Fragment } from 'react';
 import { Alert, Spinner, Row, Col, Image, Table } from 'react-bootstrap';
-import { useShowsDetail } from '../../hooks/movies';
-import { getMovieImg } from '../../utils';
-import PageMeta from '../shared/PageMeta';
-import Breadcrumbs from '../shared/Breadcrumbs';
+import MoviesRouteDictionary from '../routes';
+import { MoviesType, MoviesTitle } from '../enums';
+import { useMoviesDetail } from '../hooks';
+import { getMovieImg } from '../utils';
+import { formatPrice } from '../../../utils';
+import PageMeta from '../../../components/shared/PageMeta';
+import Breadcrumbs from '../../../components/shared/Breadcrumbs';
 import MoviesHeading from './MoviesHeading';
 import MoviesTrailer from './MoviesTrailer';
 
-interface TvDetailProps {
-  type: string;
+interface MovieDetailProps {
+  type: MoviesType.Movie;
   id: string;
 }
 
-const TvDetail: FC<TvDetailProps> = ({ type, id }) => {
-  const [tv, error] = useShowsDetail(id);
+const MovieDetail: FC<MovieDetailProps> = ({ type, id }) => {
+  const [movie, error] = useMoviesDetail(id);
 
   if (error)
     return (
@@ -22,41 +25,42 @@ const TvDetail: FC<TvDetailProps> = ({ type, id }) => {
       </Alert>
     );
 
-  if (!tv) return <Spinner animation="border" className="my-5" />;
+  if (!movie) return <Spinner animation="border" className="my-5" />;
 
   const {
-    original_name,
-    name,
+    original_title,
     poster_path,
     overview,
-    first_air_date,
-    number_of_episodes,
+    release_date,
+    runtime,
     genres,
     production_companies,
-  } = tv;
-
-  const title = `${name} ${name !== original_name ? `(${original_name})` : ''}`;
+    budget,
+    revenue,
+  } = movie;
 
   return (
     <>
-      <PageMeta title={title} />
-      <Breadcrumbs crumbs={[{ title: 'Movies', url: '/features/movies' }, { title }]} />
-      <MoviesHeading title={title} />
+      <PageMeta title={original_title} />
+      <Breadcrumbs
+        crumbs={[{ title: MoviesTitle.Base, url: MoviesRouteDictionary.Index }, { title: original_title }]}
+      />
+      <MoviesHeading title={original_title} />
       <Row>
         <Col md={4}>
-          <Image alt={title} src={getMovieImg(poster_path)} fluid rounded />
+          <Image alt={original_title} src={getMovieImg(poster_path)} fluid rounded />
         </Col>
         <Col md={8}>
           <p className="lead">{overview}</p>
           <Table striped bordered hover responsive>
             <tbody>
               <tr>
-                <th>First air</th>
-                <td>{first_air_date}</td>
+                <th>Release</th>
+                <td>{release_date}</td>
               </tr>
               <tr>
-                <th>Episodes</th>
-                <td>{number_of_episodes}</td>
+                <th>Runtime</th>
+                <td>{runtime} mins</td>
               </tr>
               {!!genres?.length && (
                 <tr>
@@ -78,6 +82,18 @@ const TvDetail: FC<TvDetailProps> = ({ type, id }) => {
                   </td>
                 </tr>
               )}
+              {budget > 0 && (
+                <tr>
+                  <th>Budget</th>
+                  <td>{formatPrice(budget)}</td>
+                </tr>
+              )}
+              {revenue > 0 && (
+                <tr>
+                  <th>Revenue</th>
+                  <td>{formatPrice(revenue)}</td>
+                </tr>
+              )}
             </tbody>
           </Table>
           <MoviesTrailer type={type} id={id} />
@@ -87,4 +103,4 @@ const TvDetail: FC<TvDetailProps> = ({ type, id }) => {
   );
 };
 
-export default TvDetail;
+export default MovieDetail;

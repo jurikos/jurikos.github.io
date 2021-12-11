@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Image } from 'react-bootstrap';
-import PageHeading from '../shared/PageHeading';
+import PageHeading from '../../../components/shared/PageHeading';
 
 interface MoviesHeadingProps {
   title: string;

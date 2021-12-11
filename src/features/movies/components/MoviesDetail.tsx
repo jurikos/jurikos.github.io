@@ -1,13 +1,18 @@
 import { FC } from 'react';
+import { MoviesType } from '../enums';
 import MovieDetail from './MovieDetail';
 import TvDetail from './TvDetail';
 
 interface MoviesDetailProps {
-  type: string;
+  type: MoviesType;
   id: string;
 }
 
 const MoviesDetail: FC<MoviesDetailProps> = ({ type, id }) =>
-  type === 'movie' ? <MovieDetail type={type} id={id} /> : <TvDetail type={type} id={id} />;
+  type === MoviesType.Movie ? (
+    <MovieDetail type={MoviesType.Movie} id={id} />
+  ) : (
+    <TvDetail type={MoviesType.Tv} id={id} />
+  );
 
 export default MoviesDetail;
