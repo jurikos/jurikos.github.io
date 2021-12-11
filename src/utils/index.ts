@@ -1,6 +1,12 @@
 import { get as _get } from 'lodash';
 
-export const fetcher = (url: string) => fetch(url).then((r) => r.json());
+export const fetcher = async (url: string) => {
+  const res = await fetch(url);
+
+  if (!res.ok) throw new Error('An error occurred while fetching the data.');
+
+  return res.json();
+};
 
 export const removeProtocolFromUrl = (url: string) => url.replace(/(^\w+:|^)\/\//, '');
 
@@ -18,3 +24,6 @@ export const arrSortStringAscByKey = (arr: any[], key: string) =>
 
 export const arrSortStringDescByKey = (arr: any[], key: string) =>
   arr.sort((a, b) => _get(b, key).localeCompare(_get(a, key)));
+
+export const getMovieImg = (posterPath: string | null) =>
+  posterPath ? `https://image.tmdb.org/t/p/w500${posterPath}` : 'https://via.placeholder.com/500x750?text=NO+PREVIEW';

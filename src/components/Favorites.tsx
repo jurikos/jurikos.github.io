@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { Container, Spinner } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { X } from 'react-bootstrap-icons';
 import favoriteCryptoAtom from '../state/atoms/favoriteCryptoAtom';
 import { formatPrice } from '../utils';
@@ -15,7 +15,7 @@ interface FavoriteCryptoDataProps {
 const FavoriteCryptoData: FC<FavoriteCryptoDataProps> = ({ code }) => {
   const cryptoDetailData = useCryptoDetailData(code);
 
-  if (!cryptoDetailData) return <Spinner animation="border" size="sm" className="ms-2" />;
+  if (!cryptoDetailData) return null;
 
   const { price, changePct24h } = cryptoDetailData;
 

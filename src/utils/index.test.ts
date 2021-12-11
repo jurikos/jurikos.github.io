@@ -8,6 +8,7 @@ import {
   arrSortDescByKey,
   arrSortStringAscByKey,
   arrSortStringDescByKey,
+  getMovieImg,
 } from './';
 import { mockEstoniaCovidData, mockCountriesCovidData, mockCountriesCovidDataReverse } from '../mocks';
 import config from '../config';
@@ -49,3 +50,6 @@ test('array alphabetically sorted ASC by key', () =>
 
 test('array alphabetically sorted DESC by key', () =>
   expect(arrSortStringDescByKey([...mockCountriesCovidData], 'country')).toStrictEqual(mockCountriesCovidDataReverse));
+
+test('tmdb image to equal https://image.tmdb.org/t/p/w500/image.jpg', () =>
+  expect(getMovieImg('/image.jpg')).toBe('https://image.tmdb.org/t/p/w500/image.jpg'));
