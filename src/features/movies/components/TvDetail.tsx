@@ -1,19 +1,21 @@
 import { FC, Fragment } from 'react';
 import { Alert, Spinner, Row, Col, Image, Table } from 'react-bootstrap';
-import { useMoviesDetail } from '../../hooks/movies';
-import { getMovieImg, formatPrice } from '../../utils';
-import PageMeta from '../shared/PageMeta';
-import Breadcrumbs from '../shared/Breadcrumbs';
+import MoviesRouteDictionary from '../routes';
+import { MoviesType, MoviesTitle } from '../enums';
+import { useTvDetail } from '../hooks';
+import { getMovieImg } from '../utils';
+import PageMeta from '../../../components/shared/PageMeta';
+import Breadcrumbs from '../../../components/shared/Breadcrumbs';
 import MoviesHeading from './MoviesHeading';
 import MoviesTrailer from './MoviesTrailer';
 
-interface MovieDetailProps {
-  type: string;
+interface TvDetailProps {
+  type: MoviesType.Tv;
   id: string;
 }
 
-const MovieDetail: FC<MovieDetailProps> = ({ type, id }) => {
-  const [movie, error] = useMoviesDetail(id);
+const TvDetail: FC<TvDetailProps> = ({ type, id }) => {
+  const [tv, error] = useTvDetail(id);
 
   if (error)
     return (
@@ -22,40 +24,41 @@ const MovieDetail: FC<MovieDetailProps> = ({ type, id }) => {
       </Alert>
     );
 
-  if (!movie) return <Spinner animation="border" className="my-5" />;
+  if (!tv) return <Spinner animation="border" className="my-5" />;
 
   const {
-    original_title,
+    original_name,
+    name,
     poster_path,
     overview,
-    release_date,
-    runtime,
+    first_air_date,
+    number_of_episodes,
     genres,
     production_companies,
-    budget,
-    revenue,
-  } = movie;
+  } = tv;
+
+  const title = `${name} ${name !== original_name ? `(${original_name})` : ''}`;
 
   return (
     <>
-      <PageMeta title={original_title} />
-      <Breadcrumbs crumbs={[{ title: 'Movies', url: '/features/movies' }, { title: original_title }]} />
-      <MoviesHeading title={original_title} />
+      <PageMeta title={title} />
+      <Breadcrumbs crumbs={[{ title: MoviesTitle.Base, url: MoviesRouteDictionary.Index }, { title }]} />
+      <MoviesHeading title={title} />
       <Row>
         <Col md={4}>
-          <Image alt={original_title} src={getMovieImg(poster_path)} fluid rounded />
+          <Image alt={title} src={getMovieImg(poster_path)} fluid rounded />
         </Col>
         <Col md={8}>
           <p className="lead">{overview}</p>
           <Table striped bordered hover responsive>
             <tbody>
               <tr>
-                <th>Release</th>
-                <td>{release_date}</td>
+                <th>First air</th>
+                <td>{first_air_date}</td>
               </tr>
               <tr>
-                <th>Runtime</th>
-                <td>{runtime} mins</td>
+                <th>Episodes</th>
+                <td>{number_of_episodes}</td>
               </tr>
               {!!genres?.length && (
                 <tr>
@@ -77,18 +80,6 @@ const MovieDetail: FC<MovieDetailProps> = ({ type, id }) => {
                   </td>
                 </tr>
               )}
-              {budget > 0 && (
-                <tr>
-                  <th>Budget</th>
-                  <td>{formatPrice(budget)}</td>
-                </tr>
-              )}
-              {revenue > 0 && (
-                <tr>
-                  <th>Revenue</th>
-                  <td>{formatPrice(revenue)}</td>
-                </tr>
-              )}
             </tbody>
           </Table>
           <MoviesTrailer type={type} id={id} />
@@ -98,4 +89,4 @@ const MovieDetail: FC<MovieDetailProps> = ({ type, id }) => {
   );
 };
 
-export default MovieDetail;
+export default TvDetail;

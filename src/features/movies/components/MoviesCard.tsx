@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Card, Badge } from 'react-bootstrap';
-import { getMovieImg } from '../../utils';
+import { getMovieImg } from '../utils';
 
 interface MoviesCardProps {
   image: string | null;

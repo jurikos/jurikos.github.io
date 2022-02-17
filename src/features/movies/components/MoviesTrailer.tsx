@@ -1,10 +1,11 @@
 import { FC } from 'react';
 import { Alert } from 'react-bootstrap';
-import { useMoviesTrailer } from '../../hooks/movies';
+import { MoviesType } from '../enums';
+import { useMoviesTrailer } from '../hooks';
 
 interface MoviesTrailerPRops {
   id: string;
-  type: string;
+  type: MoviesType;
 }
 
 const MoviesTrailer: FC<MoviesTrailerPRops> = ({ type, id }) => {
