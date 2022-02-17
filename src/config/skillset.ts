@@ -23,7 +23,7 @@ const skillset = [
   },
   {
     title: 'Frameworks / Platforms',
-    items: ['Next.js', 'Magento 2', 'Magento PWA Studio', 'WordPress'],
+    items: ['Next.js', 'Shopify', 'Magento 2', 'Magento PWA Studio', 'WordPress'],
   },
   {
     title: 'Methodologies / Processes',

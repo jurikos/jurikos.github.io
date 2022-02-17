@@ -8,6 +8,7 @@ const experience = [
     projects: [
       'External consultant (NDA)',
       'iPharma',
+      'Shopify Headless',
       'Commercium7',
       'Doctor.ee',
       'Token.ee',

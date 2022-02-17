@@ -1,5 +1,11 @@
 const projects = [
   {
+    title: 'Shopify Headless',
+    description: 'Shopify Headless Demo',
+    url: 'https://demo.commercium7.com',
+    stack: ['Shopify', 'React', 'Recoil', 'Next.js', 'Vercel'],
+  },
+  {
     title: 'Ipharma',
     description: 'iPharma eCommerce PWA',
     url: 'https://www.ipharma.ee',
