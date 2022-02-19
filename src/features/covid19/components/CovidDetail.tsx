@@ -1,11 +1,13 @@
 import { FC } from 'react';
 import { Alert, Spinner, Row, Col, Table } from 'react-bootstrap';
 import Chart from 'react-apexcharts';
-import { useCovidDetail } from '../../hooks/covid19';
-import { formatNumber } from '../../utils';
-import PageMeta from '../shared/PageMeta';
-import Breadcrumbs from '../shared/Breadcrumbs';
-import PageHeading from '../shared/PageHeading';
+import Covid19RouteDictionary from '../routes';
+import { Covid19Title } from '../enums';
+import { useCovidDetail } from '../hooks';
+import { formatNumber } from '../../../utils';
+import PageMeta from '../../../components/shared/PageMeta';
+import Breadcrumbs from '../../../components/shared/Breadcrumbs';
+import PageHeading from '../../../components/shared/PageHeading';
 
 interface CovidDetailProps {
   country: string;
@@ -34,14 +36,15 @@ const CovidDetail: FC<CovidDetailProps> = ({ country }) => {
     todayRecovered,
     critical,
   } = covidDetail;
-  const title = `${countryName} Covid19 stats`;
+  const baseTitle = Covid19Title.Base;
+  const title = `${countryName} ${baseTitle} stats`;
 
   return (
     <>
       <PageMeta title={title} />
       <Breadcrumbs
         className="my-3"
-        crumbs={[{ title: 'Covid19', url: '/features/covid-19' }, { title: countryName }]}
+        crumbs={[{ title: baseTitle, url: Covid19RouteDictionary.Index }, { title: countryName }]}
       />
       <PageHeading title={title} />
       <Row>

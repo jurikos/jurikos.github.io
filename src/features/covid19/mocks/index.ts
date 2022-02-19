@@ -1,4 +1,4 @@
-import { CountryModel } from '../models/covid19';
+import { CountryModel } from '../models';
 
 export const mockEstoniaCovidData: CountryModel = {
   updated: 1638783329670,

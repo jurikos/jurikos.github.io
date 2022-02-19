@@ -1,4 +1,5 @@
-const features = {
+const config = {
+  endpoint: 'https://min-api.cryptocompare.com/data',
   charts: {
     timeframes: [
       {
@@ -23,12 +24,6 @@ const features = {
       },
     ],
   },
-  covid19: {
-    endpoint: 'https://disease.sh/v3',
-  },
-  crypto: {
-    endpoint: 'https://min-api.cryptocompare.com/data',
-  },
 };
 
-export default features;
+export default config;

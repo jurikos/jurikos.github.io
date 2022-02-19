@@ -1,23 +1,24 @@
 import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Alert, Spinner, Form, Table } from 'react-bootstrap';
-import { useCovidList } from '../../hooks/covid19';
+import { Covid19Title } from '../enums';
+import { useCovidList } from '../hooks';
 import {
   arrSortAscByKey,
   arrSortDescByKey,
   arrSortStringAscByKey,
   arrSortStringDescByKey,
   formatNumber,
-} from '../../utils';
-import PageMeta from '../shared/PageMeta';
-import Breadcrumbs from '../shared/Breadcrumbs';
-import PageHeading from '../shared/PageHeading';
-import TableHeadingSort from '../shared/TableHeadingSort';
+} from '../../../utils';
+import PageMeta from '../../../components/shared/PageMeta';
+import Breadcrumbs from '../../../components/shared/Breadcrumbs';
+import PageHeading from '../../../components/shared/PageHeading';
+import TableHeadingSort from '../../../components/shared/TableHeadingSort';
 
 const CovidList: FC = () => {
   const [covidList, setCovidList, error] = useCovidList();
   const [search, setSearch] = useState('');
-  const title = 'Covid19';
+  const title = Covid19Title.Base;
 
   if (error)
     return (

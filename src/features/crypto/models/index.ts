@@ -1,7 +1,4 @@
-export enum CryptoApiStatusEnum {
-  Success = 'Success',
-  Error = 'Error',
-}
+import { CryptoApiStatusEnum } from '../enums';
 
 interface CoinInfoModel {
   Name: string;

@@ -1,27 +1,36 @@
+import BaseRouteDictionary from '../routes';
+import { PageTitle } from '../enums';
+
+import Covid19RouteDictionary from '../features/covid19/routes';
+import { Covid19Title } from '../features/covid19/enums';
+
+import CryptoRouteDictionary from '../features/crypto/routes';
+import { CryptoTitle } from '../features/crypto/enums';
+
 import MoviesRouteDictionary from '../features/movies/routes';
 import { MoviesTitle } from '../features/movies/enums';
 
 const nav = [
   {
-    title: 'Experience',
-    url: '/experience',
+    title: PageTitle.Experience,
+    url: BaseRouteDictionary.Experience,
   },
   {
-    title: 'Projects',
-    url: '/projects',
+    title: PageTitle.Projects,
+    url: BaseRouteDictionary.Projects,
   },
   {
-    title: 'Features',
-    url: '/features',
+    title: PageTitle.Features,
+    url: '',
     children: [
-      { title: 'Covid 19', url: '/features/covid-19' },
-      { title: 'Crypto', url: '/features/crypto' },
+      { title: Covid19Title.Base, url: Covid19RouteDictionary.Index },
+      { title: CryptoTitle.Base, url: CryptoRouteDictionary.Index },
       { title: MoviesTitle.Base, url: MoviesRouteDictionary.Index },
     ],
   },
   {
-    title: 'Contact',
-    url: '/contact',
+    title: PageTitle.Contact,
+    url: BaseRouteDictionary.Contact,
   },
 ];
 

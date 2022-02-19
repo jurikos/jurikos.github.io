@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { Container } from 'react-bootstrap';
 import { X } from 'react-bootstrap-icons';
-import favoriteCryptoAtom from '../state/atoms/favoriteCryptoAtom';
+import favoriteCryptoAtom from '../features/crypto/state/favoriteCryptoAtom';
 import { formatPrice } from '../utils';
 import Percent from './shared/Percent';
-import { useCryptoDetailData } from '../hooks/crypto';
+import { useCryptoDetailData } from '../features/crypto/hooks';
 
 interface FavoriteCryptoDataProps {
   code: string;

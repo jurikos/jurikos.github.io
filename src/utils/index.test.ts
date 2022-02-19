@@ -1,6 +1,4 @@
-import fetchMock from 'jest-fetch-mock';
 import {
-  fetcher,
   removeProtocolFromUrl,
   formatPrice,
   formatNumber,
@@ -9,27 +7,7 @@ import {
   arrSortStringAscByKey,
   arrSortStringDescByKey,
 } from './';
-import { mockEstoniaCovidData, mockCountriesCovidData, mockCountriesCovidDataReverse } from '../mocks';
-import config from '../config';
-
-const {
-  features: {
-    covid19: { endpoint: covidEndpoint },
-  },
-} = config;
-
-beforeEach(() => fetchMock.resetMocks());
-
-it('response result is mockEstoniaCovidData', async () => {
-  fetchMock.mockResponseOnce(
-    JSON.stringify({
-      result: mockEstoniaCovidData,
-    }),
-  );
-  const res = await fetcher(`${covidEndpoint}/covid-19/countries/estonia`);
-  expect(res.result).toStrictEqual(mockEstoniaCovidData);
-  expect(fetchMock.mock.calls.length).toEqual(1);
-});
+import { mockCountriesCovidData, mockCountriesCovidDataReverse } from '../features/covid19/mocks';
 
 test('remove protocol from https://www.onpolar.com to equal www.onpolar.com', () =>
   expect(removeProtocolFromUrl('https://www.onpolar.com')).toBe('www.onpolar.com'));

@@ -4,43 +4,48 @@ import { RecoilRoot } from 'recoil';
 import { Container } from 'react-bootstrap';
 import Header from './components/Header';
 import Favorites from './components/Favorites';
+
+import BaseRouteDictionary from './routes';
 import Home from './views/Home';
 import Experience from './views/Experience';
 import Projects from './views/Projects';
-import Covid19 from './views/Covid19';
-import Crypto from './views/Crypto';
 import Contact from './views/Contact';
 
+import Covid19RouteDictionary from './features/covid19/routes';
+import Covid19 from './features/covid19/views';
+
+import CryptoRouteDictionary from './features/crypto/routes';
+import Crypto from './features/crypto/views';
+
 import MoviesRouteDictionary from './features/movies/routes';
-import Movies from './features/movies/views/Movies';
+import Movies from './features/movies/views';
 
-const App: FC = () => {
-  return (
-    <RecoilRoot>
-      <Router>
-        <div className="sticky-top">
-          <Header />
-          <Favorites />
-        </div>
-        <Container className="pb-5">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/experience" element={<Experience />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
+const App: FC = () => (
+  <RecoilRoot>
+    <Router>
+      <div className="sticky-top">
+        <Header />
+        <Favorites />
+      </div>
+      <Container className="pb-5">
+        <Routes>
+          <Route path={BaseRouteDictionary.Index} element={<Home />} />
+          <Route path={BaseRouteDictionary.Experience} element={<Experience />} />
+          <Route path={BaseRouteDictionary.Projects} element={<Projects />} />
+          <Route path={BaseRouteDictionary.Contact} element={<Contact />} />
 
-            <Route path="/features/covid-19" element={<Covid19 />} />
-            <Route path="/features/covid-19/:country" element={<Covid19 />} />
-            <Route path="/features/crypto" element={<Crypto />} />
-            <Route path="/features/crypto/:code" element={<Crypto />} />
+          <Route path={Covid19RouteDictionary.Index} element={<Covid19 />} />
+          <Route path={Covid19RouteDictionary.Detail} element={<Covid19 />} />
 
-            <Route path={MoviesRouteDictionary.Index} element={<Movies />} />
-            <Route path={MoviesRouteDictionary.Detail} element={<Movies />} />
-          </Routes>
-        </Container>
-      </Router>
-    </RecoilRoot>
-  );
-};
+          <Route path={CryptoRouteDictionary.Index} element={<Crypto />} />
+          <Route path={CryptoRouteDictionary.Detail} element={<Crypto />} />
+
+          <Route path={MoviesRouteDictionary.Index} element={<Movies />} />
+          <Route path={MoviesRouteDictionary.Detail} element={<Movies />} />
+        </Routes>
+      </Container>
+    </Router>
+  </RecoilRoot>
+);
 
 export default App;

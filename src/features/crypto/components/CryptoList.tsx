@@ -3,26 +3,27 @@ import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { Alert, Spinner, Form, Table } from 'react-bootstrap';
 import { Heart, HeartFill } from 'react-bootstrap-icons';
-import favoriteCryptoAtom from '../../state/atoms/favoriteCryptoAtom';
-import { useCryptoList } from '../../hooks/crypto';
+import { CryptoTitle } from '../enums';
+import favoriteCryptoAtom from '../state/favoriteCryptoAtom';
+import { useCryptoList } from '../hooks';
 import {
   arrSortAscByKey,
   arrSortDescByKey,
   arrSortStringAscByKey,
   arrSortStringDescByKey,
   formatPrice,
-} from '../../utils';
-import PageMeta from '../shared/PageMeta';
-import Breadcrumbs from '../shared/Breadcrumbs';
-import PageHeading from '../shared/PageHeading';
-import TableHeadingSort from '../shared/TableHeadingSort';
-import Percent from '../shared/Percent';
+} from '../../../utils';
+import PageMeta from '../../../components/shared/PageMeta';
+import Breadcrumbs from '../../../components/shared/Breadcrumbs';
+import PageHeading from '../../../components/shared/PageHeading';
+import TableHeadingSort from '../../../components/shared/TableHeadingSort';
+import Percent from '../../../components/shared/Percent';
 
 const CryptoList: FC = () => {
   const [cryptoList, setCryptoList, error] = useCryptoList();
   const [search, setSearch] = useState('');
   const [favoriteCrypto, setFavoriteCrypto] = useRecoilState(favoriteCryptoAtom);
-  const title = 'Crypto';
+  const title = CryptoTitle.Base;
   const iconColor = 'var(--bs-red)';
   const iconSize = 16;
 

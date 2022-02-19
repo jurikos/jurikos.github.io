@@ -1,13 +1,15 @@
 import { FC } from 'react';
 import { Alert, Spinner, ButtonGroup, Button } from 'react-bootstrap';
 import Chart from 'react-apexcharts';
-import { useCryptoDetailData, useCryptoHistory } from '../../hooks/crypto';
-import { formatPrice } from '../../utils';
-import config from '../../config';
-import PageMeta from '../shared/PageMeta';
-import Breadcrumbs from '../shared/Breadcrumbs';
-import PageHeading from '../shared/PageHeading';
-import Percent from '../shared/Percent';
+import CryptoRouteDictionary from '../routes';
+import { CryptoTitle } from '../enums';
+import { useCryptoDetailData, useCryptoHistory } from '../hooks';
+import { formatPrice } from '../../../utils';
+import config from '../config';
+import PageMeta from '../../../components/shared/PageMeta';
+import Breadcrumbs from '../../../components/shared/Breadcrumbs';
+import PageHeading from '../../../components/shared/PageHeading';
+import Percent from '../../../components/shared/Percent';
 
 interface CryptoDetailProps {
   code: string;
@@ -16,9 +18,7 @@ interface CryptoDetailProps {
 const CryptoDetail: FC<CryptoDetailProps> = ({ code }) => {
   const cryptoCode = code.toUpperCase();
   const {
-    features: {
-      charts: { timeframes },
-    },
+    charts: { timeframes },
   } = config;
 
   const cryptoDetailData = useCryptoDetailData(cryptoCode);
@@ -39,7 +39,7 @@ const CryptoDetail: FC<CryptoDetailProps> = ({ code }) => {
   return (
     <>
       <PageMeta title={name} />
-      <Breadcrumbs crumbs={[{ title: 'Crypto', url: '/features/crypto' }, { title: name }]} />
+      <Breadcrumbs crumbs={[{ title: CryptoTitle.Base, url: CryptoRouteDictionary.Index }, { title: name }]} />
       <PageHeading title={name} />
       <div className="mb-5">
         <div className="d-flex align-items-center fs-2">

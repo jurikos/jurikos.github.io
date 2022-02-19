@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useParams } from 'react-router-dom';
-import CryptoList from '../components/crypto/CryptoList';
-import CryptoDetail from '../components/crypto/CryptoDetail';
+import CryptoList from '../components/CryptoList';
+import CryptoDetail from '../components/CryptoDetail';
 
 const Crypto: FC = () => {
   const { code } = useParams();

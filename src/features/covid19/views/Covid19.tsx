@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useParams } from 'react-router-dom';
-import CovidList from '../components/covid19/CovidList';
-import CovidDetail from '../components/covid19/CovidDetail';
+import CovidList from '../components/CovidList';
+import CovidDetail from '../components/CovidDetail';
 
 const Covid19: FC = () => {
   const { country } = useParams();

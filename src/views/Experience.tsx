@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { Accordion, Badge, Button } from 'react-bootstrap';
+import { PageTitle } from '../enums';
 import { removeProtocolFromUrl } from '../utils';
 import config from '../config';
 import PageMeta from '../components/shared/PageMeta';
@@ -8,7 +9,7 @@ import PageHeading from '../components/shared/PageHeading';
 
 const Experience: FC = () => {
   const { experience } = config;
-  const title = 'Experience';
+  const title = PageTitle.Experience;
 
   return (
     <>

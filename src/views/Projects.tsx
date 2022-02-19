@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { Row, Col, Button, Card, Badge } from 'react-bootstrap';
+import { PageTitle } from '../enums';
 import { removeProtocolFromUrl } from '../utils';
 import config from '../config';
 import PageMeta from '../components/shared/PageMeta';
@@ -8,7 +9,7 @@ import PageHeading from '../components/shared/PageHeading';
 
 const Projects: FC = () => {
   const { projects } = config;
-  const title = 'Projects';
+  const title = PageTitle.Projects;
 
   return (
     <>

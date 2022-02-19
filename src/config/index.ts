@@ -2,7 +2,6 @@ import nav from './nav';
 import skillset from './skillset';
 import experience from './experience';
 import projects from './projects';
-import features from './features';
 
 const config = {
   brand: 'CV',
@@ -21,7 +20,6 @@ const config = {
   skillset,
   experience,
   projects,
-  features,
 };
 
 export default config;

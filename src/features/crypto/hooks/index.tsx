@@ -1,20 +1,13 @@
 import { useEffect, useState, Dispatch, SetStateAction } from 'react';
 import useSWR from 'swr';
-import {
-  CryptoApiStatusEnum,
-  CryptoListDataModel,
-  CryptoListModel,
-  CryptoHistoryDataModel,
-  CryptoHistoryModel,
-} from '../models/crypto';
-import { fetcher } from '../utils';
+import { CryptoApiStatusEnum } from '../enums';
+import { CryptoListDataModel, CryptoListModel, CryptoHistoryDataModel, CryptoHistoryModel } from '../models';
+import { fetcher } from '../../../utils';
 import config from '../config';
 
 const {
-  features: {
-    charts: { timeframes },
-    crypto: { endpoint },
-  },
+  endpoint,
+  charts: { timeframes },
 } = config;
 
 // TODO: change when swr properly types error response
