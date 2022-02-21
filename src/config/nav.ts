@@ -21,7 +21,7 @@ const nav = [
   },
   {
     title: PageTitle.Features,
-    url: '',
+    url: BaseRouteDictionary.Features,
     children: [
       { title: Covid19Title.Base, url: Covid19RouteDictionary.Index },
       { title: CryptoTitle.Base, url: CryptoRouteDictionary.Index },
